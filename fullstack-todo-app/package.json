@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "fullstack-todo-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "workspaces": [
+      "apps/*",
+      "packages/*"
+  ],
+  "scripts": {
+      "client:dev": "yarn workspace client dev",
+      "server:dev": "yarn workspace server dev",
+      "client:build": "yarn workspace client build",
+      "server:build": "yarn workspace server build"
+  }
+}
+

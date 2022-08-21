@@ -1,0 +1,16 @@
+{
+    "extends": "tsconfig/base.json",
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "@hooks": ["hooks/*"],
+            "@decorators": ["decorators/*"],
+            "@infra": ["infrastructure/*"],
+            "@services": ["services/*"],
+            "@plugins": ["plugins/*"],
+            "@lib": ["lib/*"]
+        }
+    },
+    "include": ["."],
+    "exclude": ["node_modules"]
+}
