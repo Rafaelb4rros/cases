@@ -1,4 +1,4 @@
-
+// 01 - Two sum
 //O(N*N) solution
 int* twoSum(int* nums, int numsSize, int target, int* returnSize){
     //allocating memory for a array of size 2 where each value of the array
