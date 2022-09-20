@@ -1,9 +1,28 @@
-import { Book } from "./entities";
+import emitter from "./emitter";
 
-function Controller(argV: string) {
-    const book = new Book('1', '2', '3', 's')
-    console.log(book.create());
-};
+const ENTITIES = ['book', 'bookshelf'] as const;
+const METHODS = ['create', 'list', 'delete', 'update'] as const;
+type ACTION_STR = `${typeof ENTITIES[number]}:${typeof METHODS[number]}`;
 
-Controller('dsadsa');
+export const ACTIONS: Record<ACTION_STR, any> = {
+    "book:create": () => {
+        console.log('oi');
+    },
+    "book:delete": () => { },
+    "book:list": () => { },
+    "book:update": () => { },
+    "bookshelf:create": () => { },
+    "bookshelf:delete": () => { },
+    "bookshelf:list": () => { },
+    "bookshelf:update": () => { },
+}
+
+emitter.on("event", (evt: string) => {
+    if (evt in ACTIONS) {
+        ACTIONS[evt];
+    }
+});
+
+
+
 

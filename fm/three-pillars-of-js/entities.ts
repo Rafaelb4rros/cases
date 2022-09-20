@@ -14,7 +14,6 @@ function parseEntity<T extends Record<string, any>>(entity: T): (string | null)[
     return Object.values(entity).map(v => v == undefined ? null : v);
 }
 
-
 class Bookshelf implements BookshelfEntity {
     public id: string = randomUUID();
 
@@ -24,7 +23,7 @@ class Bookshelf implements BookshelfEntity {
 
     public create(): void {
         const args: (string | null)[] = parseEntity(this);
-        queryRunner(`INSERT INTO Book($1, $2)`, args);
+        queryRunner(`INSERT INTO Book values (?, ?)`, args as string[]);
     }
 };
 
@@ -53,7 +52,7 @@ class Book implements BookEntity {
     
     create(): void {
         const args: (string | null)[] = parseEntity(this);
-        queryRunner(`INSERT INTO Book($1, $2, $3, $4, $5)`, args);
+        queryRunner(`INSERT INTO Book VALUES (?, ?, ?, ?, ?);`, args as string[]);
     }
 };
 
