@@ -1,9 +1,8 @@
 function shuffle([...names]) {
-    return names.reduce((acc, _, first) => {
-        const arr = Math.floor(Math.random() * first);
-        //swaping aleatory index on range of the current loop idx with the current loop idx;
-        [[acc[first], acc[arr]] = [acc[arr], acc[first]]]
-        return acc;
+    return names.reduce((newArr, _, idx) => {
+        const randomIdx = Math.floor(Math.random() * idx);
+        [[newArr[idx], newArr[randomIdx]] = [newArr[randomIdx], newArr[idx]]]
+        return newArr;
     }, names)
 };
 

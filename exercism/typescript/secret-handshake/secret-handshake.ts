@@ -6,6 +6,8 @@ const dict: Map<number, string> = new Map([
     [1_000, 'jump'],
 ]);
 
+
+//TODO - refactor it to use bitwise operators
 const getClosestCommand = (cmd: number) => {
     const MAX_STACK = 10_000;
     let power = 1;
