@@ -3,7 +3,7 @@
   "module": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "bun run build && bun run migrate:run && bun run index.ts",
+    "dev": "bun run build && bun run index.ts",
     "migrate": "./scripts/migrate.sh $name",
     "migrate:run": "./scripts/migrate-run.sh",
     "reset": "./scripts/reset.sh",

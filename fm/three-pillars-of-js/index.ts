@@ -1,14 +1,18 @@
 import { Database } from "bun:sqlite";
 import { database_file } from "./config";
-import emitter from "./emitter";
-
+import { ACTIONS, ACTION_STR } from "./app";
+import { AnyFN } from "./utils";
 import "./app";
 
 function start() {
-    const [_idontcare, _, ...rest] = process.argv;
-    const [entity, action] = rest;
-    if(!entity || !action) throw new Error("todo");
-    emitter.emit('event', `${entity}:${action}`);
+    const [__, _, ...rest] = process.argv;
+    const [entity, action, ...data] = rest;
+    if (!entity || !action) throw new Error("todo");
+    const act = `${entity}:${action}` as ACTION_STR;
+
+    if (act in ACTIONS) {
+        ACTIONS[act](data);
+    }
 }
 
 async function getDatabase(): Promise<(Database | undefined)> {
@@ -20,7 +24,6 @@ async function getDatabase(): Promise<(Database | undefined)> {
         return undefined;
     }
 }
-type AnyFN = (...args: any[]) => any;
 const PromiseWrap = (fn: AnyFN): Promise<boolean> => Promise.resolve(fn());
 
 async function queryRunner(queryString: string, args?: string[]) {
@@ -43,8 +46,8 @@ async function queryRunner(queryString: string, args?: string[]) {
     }
 }
 
-
 start();
+
 export {
     queryRunner,
 }
